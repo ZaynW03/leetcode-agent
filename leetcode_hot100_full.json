@@ -1,0 +1,608 @@
+[
+  {
+    "id": 1,
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "category": "Hash Table"
+  },
+  {
+    "id": 2,
+    "title": "Add Two Numbers",
+    "difficulty": "Medium",
+    "category": "Linked List"
+  },
+  {
+    "id": 3,
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "category": "Sliding Window"
+  },
+  {
+    "id": 4,
+    "title": "Median of Two Sorted Arrays",
+    "difficulty": "Hard",
+    "category": "Binary Search"
+  },
+  {
+    "id": 5,
+    "title": "Longest Palindromic Substring",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 10,
+    "title": "Regular Expression Matching",
+    "difficulty": "Hard",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 11,
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "category": "Two Pointers"
+  },
+  {
+    "id": 15,
+    "title": "3Sum",
+    "difficulty": "Medium",
+    "category": "Two Pointers"
+  },
+  {
+    "id": 17,
+    "title": "Letter Combinations of a Phone Number",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 19,
+    "title": "Remove Nth Node From End of List",
+    "difficulty": "Medium",
+    "category": "Linked List"
+  },
+  {
+    "id": 20,
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "category": "Stack"
+  },
+  {
+    "id": 21,
+    "title": "Merge Two Sorted Lists",
+    "difficulty": "Easy",
+    "category": "Linked List"
+  },
+  {
+    "id": 22,
+    "title": "Generate Parentheses",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 23,
+    "title": "Merge k Sorted Lists",
+    "difficulty": "Hard",
+    "category": "Heap / Priority Queue"
+  },
+  {
+    "id": 31,
+    "title": "Next Permutation",
+    "difficulty": "Medium",
+    "category": "Array"
+  },
+  {
+    "id": 32,
+    "title": "Longest Valid Parentheses",
+    "difficulty": "Hard",
+    "category": "Stack / DP"
+  },
+  {
+    "id": 33,
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "category": "Binary Search"
+  },
+  {
+    "id": 34,
+    "title": "Find First and Last Position of Element in Sorted Array",
+    "difficulty": "Medium",
+    "category": "Binary Search"
+  },
+  {
+    "id": 35,
+    "title": "Search Insert Position",
+    "difficulty": "Easy",
+    "category": "Binary Search"
+  },
+  {
+    "id": 39,
+    "title": "Combination Sum",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 41,
+    "title": "First Missing Positive",
+    "difficulty": "Hard",
+    "category": "Array"
+  },
+  {
+    "id": 42,
+    "title": "Trapping Rain Water",
+    "difficulty": "Hard",
+    "category": "Two Pointers"
+  },
+  {
+    "id": 45,
+    "title": "Jump Game II",
+    "difficulty": "Medium",
+    "category": "Greedy"
+  },
+  {
+    "id": 46,
+    "title": "Permutations",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 48,
+    "title": "Rotate Image",
+    "difficulty": "Medium",
+    "category": "Matrix"
+  },
+  {
+    "id": 49,
+    "title": "Group Anagrams",
+    "difficulty": "Medium",
+    "category": "Hash Table"
+  },
+  {
+    "id": 51,
+    "title": "N-Queens",
+    "difficulty": "Hard",
+    "category": "Backtracking"
+  },
+  {
+    "id": 53,
+    "title": "Maximum Subarray",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 54,
+    "title": "Spiral Matrix",
+    "difficulty": "Medium",
+    "category": "Matrix"
+  },
+  {
+    "id": 55,
+    "title": "Jump Game",
+    "difficulty": "Medium",
+    "category": "Greedy"
+  },
+  {
+    "id": 56,
+    "title": "Merge Intervals",
+    "difficulty": "Medium",
+    "category": "Sorting"
+  },
+  {
+    "id": 62,
+    "title": "Unique Paths",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 64,
+    "title": "Minimum Path Sum",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 70,
+    "title": "Climbing Stairs",
+    "difficulty": "Easy",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 72,
+    "title": "Edit Distance",
+    "difficulty": "Hard",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 73,
+    "title": "Set Matrix Zeroes",
+    "difficulty": "Medium",
+    "category": "Matrix"
+  },
+  {
+    "id": 74,
+    "title": "Search a 2D Matrix",
+    "difficulty": "Medium",
+    "category": "Binary Search"
+  },
+  {
+    "id": 75,
+    "title": "Sort Colors",
+    "difficulty": "Medium",
+    "category": "Two Pointers"
+  },
+  {
+    "id": 76,
+    "title": "Minimum Window Substring",
+    "difficulty": "Hard",
+    "category": "Sliding Window"
+  },
+  {
+    "id": 78,
+    "title": "Subsets",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 79,
+    "title": "Word Search",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 84,
+    "title": "Largest Rectangle in Histogram",
+    "difficulty": "Hard",
+    "category": "Stack"
+  },
+  {
+    "id": 94,
+    "title": "Binary Tree Inorder Traversal",
+    "difficulty": "Easy",
+    "category": "Tree"
+  },
+  {
+    "id": 96,
+    "title": "Unique Binary Search Trees",
+    "difficulty": "Medium",
+    "category": "Tree / DP"
+  },
+  {
+    "id": 98,
+    "title": "Validate Binary Search Tree",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 101,
+    "title": "Symmetric Tree",
+    "difficulty": "Easy",
+    "category": "Tree"
+  },
+  {
+    "id": 102,
+    "title": "Binary Tree Level Order Traversal",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 104,
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "category": "Tree"
+  },
+  {
+    "id": 105,
+    "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 108,
+    "title": "Convert Sorted Array to Binary Search Tree",
+    "difficulty": "Easy",
+    "category": "Tree"
+  },
+  {
+    "id": 114,
+    "title": "Flatten Binary Tree to Linked List",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 118,
+    "title": "Pascal's Triangle",
+    "difficulty": "Easy",
+    "category": "Array"
+  },
+  {
+    "id": 121,
+    "title": "Best Time to Buy and Sell Stock",
+    "difficulty": "Easy",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 124,
+    "title": "Binary Tree Maximum Path Sum",
+    "difficulty": "Hard",
+    "category": "Tree"
+  },
+  {
+    "id": 128,
+    "title": "Longest Consecutive Sequence",
+    "difficulty": "Medium",
+    "category": "Hash Table"
+  },
+  {
+    "id": 131,
+    "title": "Palindrome Partitioning",
+    "difficulty": "Medium",
+    "category": "Backtracking"
+  },
+  {
+    "id": 136,
+    "title": "Single Number",
+    "difficulty": "Easy",
+    "category": "Bit Manipulation"
+  },
+  {
+    "id": 138,
+    "title": "Copy List with Random Pointer",
+    "difficulty": "Medium",
+    "category": "Linked List"
+  },
+  {
+    "id": 139,
+    "title": "Word Break",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 141,
+    "title": "Linked List Cycle",
+    "difficulty": "Easy",
+    "category": "Linked List"
+  },
+  {
+    "id": 142,
+    "title": "Linked List Cycle II",
+    "difficulty": "Medium",
+    "category": "Linked List"
+  },
+  {
+    "id": 146,
+    "title": "LRU Cache",
+    "difficulty": "Medium",
+    "category": "Design"
+  },
+  {
+    "id": 148,
+    "title": "Sort List",
+    "difficulty": "Medium",
+    "category": "Linked List"
+  },
+  {
+    "id": 152,
+    "title": "Maximum Product Subarray",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 153,
+    "title": "Find Minimum in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "category": "Binary Search"
+  },
+  {
+    "id": 155,
+    "title": "Min Stack",
+    "difficulty": "Easy",
+    "category": "Stack"
+  },
+  {
+    "id": 160,
+    "title": "Intersection of Two Linked Lists",
+    "difficulty": "Easy",
+    "category": "Linked List"
+  },
+  {
+    "id": 169,
+    "title": "Majority Element",
+    "difficulty": "Easy",
+    "category": "Array"
+  },
+  {
+    "id": 189,
+    "title": "Rotate Array",
+    "difficulty": "Medium",
+    "category": "Array"
+  },
+  {
+    "id": 198,
+    "title": "House Robber",
+    "difficulty": "Easy",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 199,
+    "title": "Binary Tree Right Side View",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 200,
+    "title": "Number of Islands",
+    "difficulty": "Medium",
+    "category": "Graph / DFS"
+  },
+  {
+    "id": 206,
+    "title": "Reverse Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List"
+  },
+  {
+    "id": 207,
+    "title": "Course Schedule",
+    "difficulty": "Medium",
+    "category": "Graph"
+  },
+  {
+    "id": 208,
+    "title": "Implement Trie (Prefix Tree)",
+    "difficulty": "Medium",
+    "category": "Trie"
+  },
+  {
+    "id": 215,
+    "title": "Kth Largest Element in an Array",
+    "difficulty": "Medium",
+    "category": "Heap"
+  },
+  {
+    "id": 221,
+    "title": "Maximal Square",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 226,
+    "title": "Invert Binary Tree",
+    "difficulty": "Easy",
+    "category": "Tree"
+  },
+  {
+    "id": 230,
+    "title": "Kth Smallest Element in a BST",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 234,
+    "title": "Palindrome Linked List",
+    "difficulty": "Easy",
+    "category": "Linked List"
+  },
+  {
+    "id": 236,
+    "title": "Lowest Common Ancestor of a Binary Tree",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 238,
+    "title": "Product of Array Except Self",
+    "difficulty": "Medium",
+    "category": "Array"
+  },
+  {
+    "id": 239,
+    "title": "Sliding Window Maximum",
+    "difficulty": "Hard",
+    "category": "Sliding Window"
+  },
+  {
+    "id": 240,
+    "title": "Search a 2D Matrix II",
+    "difficulty": "Medium",
+    "category": "Binary Search"
+  },
+  {
+    "id": 279,
+    "title": "Perfect Squares",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 283,
+    "title": "Move Zeroes",
+    "difficulty": "Easy",
+    "category": "Two Pointers"
+  },
+  {
+    "id": 287,
+    "title": "Find the Duplicate Number",
+    "difficulty": "Medium",
+    "category": "Binary Search"
+  },
+  {
+    "id": 295,
+    "title": "Find Median from Data Stream",
+    "difficulty": "Hard",
+    "category": "Heap"
+  },
+  {
+    "id": 300,
+    "title": "Longest Increasing Subsequence",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 322,
+    "title": "Coin Change",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 347,
+    "title": "Top K Frequent Elements",
+    "difficulty": "Medium",
+    "category": "Heap"
+  },
+  {
+    "id": 394,
+    "title": "Decode String",
+    "difficulty": "Medium",
+    "category": "Stack"
+  },
+  {
+    "id": 416,
+    "title": "Partition Equal Subset Sum",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  },
+  {
+    "id": 437,
+    "title": "Path Sum III",
+    "difficulty": "Medium",
+    "category": "Tree"
+  },
+  {
+    "id": 438,
+    "title": "Find All Anagrams in a String",
+    "difficulty": "Medium",
+    "category": "Sliding Window"
+  },
+  {
+    "id": 543,
+    "title": "Diameter of Binary Tree",
+    "difficulty": "Easy",
+    "category": "Tree"
+  },
+  {
+    "id": 560,
+    "title": "Subarray Sum Equals K",
+    "difficulty": "Medium",
+    "category": "Hash Table"
+  },
+  {
+    "id": 739,
+    "title": "Daily Temperatures",
+    "difficulty": "Medium",
+    "category": "Stack"
+  },
+  {
+    "id": 763,
+    "title": "Partition Labels",
+    "difficulty": "Medium",
+    "category": "Greedy"
+  },
+  {
+    "id": 994,
+    "title": "Rotting Oranges",
+    "difficulty": "Medium",
+    "category": "BFS / Graph"
+  },
+  {
+    "id": 1143,
+    "title": "Longest Common Subsequence",
+    "difficulty": "Medium",
+    "category": "Dynamic Programming"
+  }
+]
