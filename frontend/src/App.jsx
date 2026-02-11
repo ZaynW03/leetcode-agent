@@ -18,16 +18,13 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Language Toggle */}
-      <div className="fixed top-4 right-4 z-50">
-        <button
-          onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition"
-        >
-          {language === 'zh' ? 'English' : '中文'}
-        </button>
-      </div>
+    <div className="min-h-screen">
+      <button
+        onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
+        className="language-fab neon-btn rounded-[4px] text-sm font-semibold"
+      >
+        {language === 'zh' ? 'English' : '\u4e2d\u6587'}
+      </button>
 
       {mode === 'selection' && (
         <HabitSelection onStart={handleStartPractice} lang={language} />

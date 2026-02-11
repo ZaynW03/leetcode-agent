@@ -1,0 +1,35 @@
+{
+  "records": {
+    "1": {
+      "questionId": 1,
+      "title": "Two Sum",
+      "difficulty": "Easy",
+      "category": "Hash Table",
+      "geminiResult": {
+        "status": "success",
+        "data": {
+          "title": "����֮��\n\n---\n\nTwo Sum",
+          "subtitle": "���ù�ϣ��ʵ��һ�α�������\n\n---\n\nUsing Hash Map for One-Pass Lookup",
+          "content": "�������⣺\n����һ���������� `nums` ��һ��Ŀ��ֵ `target`���ҳ������к�ΪĿ��ֵ�����������������������ǵ������±ꡣ����ÿ������ֻ���Ӧһ���𰸡�\n\n����˼·��\n��ֱ�۵ı�������˫��ѭ�� $O(n^2)$�������ǿ���ʹ�ù�ϣ��������ʱ�临�Ӷȡ������Ǳ�������ʱ������Ҫ����ǰ��������ҪѰ��֮ǰ�Ƿ���ֹ����뵱ǰ���ճ� `target` �ġ���������\n\n�㷨���裺\n1. ��ʼ��һ���չ�ϣ�� `prevMap`�����ڴ洢 {��ֵ: ����}��\n2. �������飬����ÿ��Ԫ�� `n` ������ `i`��\n   - ���㲹�� `diff = target - n`��\n   - ��� `diff` �Ƿ��Ѿ��� `prevMap` �С�\n   - ����ڣ����ҵ��˴𰸣����� `[prevMap[diff], i]`��\n   - ������ڣ��� `{n: i}` �����ϣ����\n\n���Ӷȷ�����\n- ʱ�临�Ӷȣ�$O(n)$��ֻ�����һ�����顣\n- �ռ临�Ӷȣ�$O(n)$����������Ҫ�洢����Ԫ�ص���ϣ���С�\n\n�߽������\n- ����ֻ������Ԫ�أ���С���ȣ���\n- Ŀ��ֵ��������ͬ��������ɣ����� target=6, nums=[3, 3]����\n\n---\n\nProblem Understanding:\nGiven an array of integers `nums` and an integer `target`, find the indices of the two numbers that add up to the target. Assume exactly one solution exists.\n\nKey Idea:\nInstead of a brute-force $O(n^2)$ search, use a hash map to reduce time complexity. While iterating, look for the \"complement\" (target - current value) that has already been seen.\n\nAlgorithm Steps:\n1. Initialize an empty hash map `prevMap` to store {value: index}.\n2. Iterate through the array with index `i` and value `n`.\n3. Calculate the complement: `diff = target - n`.\n4. If `diff` exists in `prevMap`, return the indices `[prevMap[diff], i]`.\n5. Otherwise, add the current number and its index to `prevMap`.\n\nComplexity Analysis:\n- Time Complexity: $O(n)$, as we scan the list only once.\n- Space Complexity: $O(n)$, to store values in the hash map.\n\nEdge Cases:\n- Array contains only two elements.\n- The two numbers forming the target are identical in value.",
+          "tags": [
+            "Array",
+            "Hash Table",
+            "Easy"
+          ],
+          "code": "def twoSum(nums, target):\n    # prevMap maps value to its index\n    prevMap = {}\n\n    for i, n in enumerate(nums):\n        diff = target - n\n        if diff in prevMap:\n            return [prevMap[diff], i]\n        prevMap[n] = i\n\n    return []"
+        }
+      },
+      "answer": "",
+      "answerAnalysis": null,
+      "completed": false,
+      "firstPassedAt": null,
+      "completedAt": null,
+      "review": {
+        "reviewedCount": 0,
+        "lastReviewedAt": null,
+        "needsReview": false
+      },
+      "updatedAt": "2026-02-11T19:21:34.613Z"
+    }
+  }
+}

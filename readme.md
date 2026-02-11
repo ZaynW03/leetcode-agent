@@ -77,3 +77,9 @@ pip install -r requirements.txt
 
 - 快速指南：`QUICK_START.md`
 - 完整说明：`README_FULL.md`
+
+## CV Project Description (Multi-Agent)
+
+This project is a local multi-agent LeetCode assistant where strategy planning, problem generation, answer evaluation, and review scheduling are coordinated as specialized modules.  
+It persists per-question artifacts, including generated solutions, user submissions, analysis results, completion state, and first-pass/review timestamps, without requiring a database.  
+The workflow supports bilingual module-level regeneration and closed-loop feedback, enabling iterative learning instead of one-shot AI responses.

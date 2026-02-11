@@ -1,111 +1,156 @@
-import os
-import json
-import getpass
 import argparse
-import sys
+import getpass
+import json
+import os
 from pathlib import Path
-
-# 强制 Python 使用 UTF-8 输出
-if sys.stdout.encoding != 'utf-8':
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 
 def _get_api_key(provided_key=None, key_file=None):
-    """
-    双重判断读取 API key 的逻辑：
-    1. 如果指定并存在 `key_file`，优先读取该文件内容并返回。
-    2. 然后检查函数参数 `provided_key`。
-    3. 再检查环境变量 `GMINI_API_KEY`。
-    4. 最后交互式询问输入。
-    """
-    # 1) 检查文件
     if key_file:
         p = Path(key_file).expanduser()
         if p.is_file():
             return p.read_text(encoding='utf-8').strip()
 
-    # 2) 参数优先
     if provided_key:
         return provided_key
 
-    # 3) 环境变量
     env_key = os.getenv('GMINI_API_KEY')
     if env_key:
         return env_key
 
-    # 4) 交互式提示（隐藏输入）
     return getpass.getpass('Enter Gemini API key (or set GMINI_API_KEY): ').strip()
 
 
-def call_api(feature='default', api_key=None, model_name='gemini-3-flash-preview', user_query=None, dry_run=False, key_file=None):
-    """
-    调用 Gemini 的封装函数。
-    - feature: 指定 Gemini 回复中包含的 feature 描述（默认 'default'）。
-    - api_key: 优先级：参数 > 环境变量 GMINI_API_KEY > 交互式输入。
-    - model_name: 使用的模型名称。
-    - user_query: 要发送给模型的用户问题，如果为 None 则使用默认示例。
-    - dry_run: True 则仅返回生成的 prompt（不发起网络调用）。
-    返回 Python dict（解析自模型输出 JSON）或包含 prompt 的 dict（dry_run）。
-    """
-    if user_query is None:
-        user_query = '给我逆序链表两数之和的算法解析'
+def _extract_json(text):
+    text = (text or '').strip()
+    if not text:
+        raise ValueError('Gemini returned empty output')
 
-    prompt = f"""
-# Role
-你是一个前端内容分发专家，负责将复杂的信息转化为结构化的 JSON 格式，以便直接对接 UI 组件。
+    start = text.find('{')
+    end = text.rfind('}')
+    if start == -1 or end == -1 or start > end:
+        raise ValueError('No JSON object found in Gemini output')
 
-# Task
-请分析并回复用户的问题，但必须遵循以下【输出格式】要求：
-1. 必须输出且仅输出一个合法的 JSON 对象。
-2. 不要包含任何 Markdown 的代码块标签（如 ```json ）。
-3. 文本内容请使用适合前端显示的 Markdown 语法（如加粗、行内代码）。
-4. title、subtitle、content 字段必须包含中文版本（作为主要内容）和英文版本。
-   格式: "中文内容\\n\\n---\\n\\n English Content"
-5. 如果有代码，请也提供对应的注释版本。
+    return json.loads(text[start:end + 1])
 
-# Feature
-{feature}
 
-# JSON Structure Example
+def build_generate_prompt(feature, user_query, module):
+    module_rule = (
+        f'Primary refresh target: {module}. Keep this part especially strong and concrete.'
+        if module
+        else 'Generate a full answer package.'
+    )
+
+    return f"""
+You are an algorithm interview coach.
+
+Return exactly one valid JSON object. No markdown code fence.
+
+Output schema:
 {{
   "status": "success",
   "data": {{
-    "title": "中文标题\\n\\n---\\n\\nEnglish Title",
-    "subtitle": "中文副标题\\n\\n---\\n\\nEnglish Subtitle",
-    "content": "中文正文内容\\n\\n---\\n\\nEnglish Content",
-    "tags": ["标签1", "Tag1"],
-    "code": "// solution code here",
-    "action_button": "查看代码\\n\\n---\\n\\nView Code",
-    "metadata": {{
-      "word_count": 120,
-      "priority": "high"
-    }}
+    "title": "Chinese\\n\\n---\\n\\nEnglish",
+    "subtitle": "Chinese\\n\\n---\\n\\nEnglish",
+    "content": "Chinese\\n\\n---\\n\\nEnglish",
+    "localized": {{
+      "zh": {{
+        "title": "纯中文标题",
+        "subtitle": "纯中文副标题",
+        "content": "纯中文正文"
+      }},
+      "en": {{
+        "title": "English title",
+        "subtitle": "English subtitle",
+        "content": "English content"
+      }}
+    }},
+    "tags": ["tag1", "tag2"],
+    "code": "single code block string only"
   }}
 }}
 
-# User Query
+Rules:
+1) Keep wording clear and direct. Use short paragraphs and explicit steps.
+2) For content: include problem understanding, key idea, algorithm steps, complexity, and edge cases.
+3) For code: output only one clean implementation in the requested programming language.
+4) Chinese and English must both be present in title/subtitle/content, split by "\\n\\n---\\n\\n".
+5) You MUST also fill data.localized.zh.* and data.localized.en.* keys with clear plain text.
+6) tags should be short and useful.
+7) {module_rule}
+
+Feature context:
+{feature}
+
+User question:
 [{user_query}]
 """.strip()
+
+
+def build_judge_prompt(feature, user_query):
+    return f"""
+You are a strict coding interview evaluator.
+
+Return exactly one valid JSON object. No markdown code fence.
+
+Output schema:
+{{
+  "status": "success",
+  "data": {{
+    "runnable": true,
+    "ideaCorrect": true,
+    "complexityScore": 1,
+    "summary": "Chinese\\n\\n---\\n\\nEnglish",
+    "issues": ["Chinese\\n\\n---\\n\\nEnglish"],
+    "suggestions": ["Chinese\\n\\n---\\n\\nEnglish"],
+    "fixedCode": "optional improved code, same language as submission"
+  }}
+}}
+
+Rules:
+1) runnable=true only when the code is syntactically valid and likely to run.
+2) ideaCorrect=true when core algorithm direction is right, even if code has bugs.
+3) complexityScore must be:
+   - 1: only barely solves / brute force / poor generalization
+   - 2: generally correct and reusable
+   - 3: optimal or near-optimal for this problem
+4) If runnable=false, provide concrete fix steps and a corrected code draft in fixedCode.
+5) Keep wording clear and direct. No fluff.
+6) summary/issues/suggestions must all include Chinese and English split by "\\n\\n---\\n\\n".
+
+Feature context:
+{feature}
+
+User submission:
+[{user_query}]
+""".strip()
+
+
+def call_api(feature='default', api_key=None, model_name='gemini-3-flash-preview', user_query=None, dry_run=False, key_file=None, module=None, task='generate'):
+    if user_query is None:
+        user_query = 'Explain the Two Sum problem and give a solution.'
+
+    if task == 'judge':
+        prompt = build_judge_prompt(feature=feature, user_query=user_query)
+    else:
+        prompt = build_generate_prompt(feature=feature, user_query=user_query, module=module)
 
     if dry_run:
         return {'prompt': prompt}
 
-    # 延迟导入以便在 dry_run 环境下不依赖外部包
     try:
         import google.generativeai as genai
     except Exception as e:
-        raise RuntimeError('需要安装 google-generativeai，或在 dry_run 模式下运行。') from e
+        raise RuntimeError('google-generativeai is required. Install dependencies first.') from e
 
     key = _get_api_key(api_key, key_file=key_file)
     if not key:
-        raise ValueError('API key not provided. Set GMINI_API_KEY or pass api_key parameter.')
+        raise ValueError('API key not provided. Set GMINI_API_KEY or pass --api-key.')
 
     genai.configure(api_key=key)
     model = genai.GenerativeModel(model_name)
     response = model.generate_content(prompt)
-    # 期望模型返回严格的 JSON 文本
-    return json.loads(response.text)
+    return _extract_json(response.text)
 
 
 def main():
@@ -114,18 +159,22 @@ def main():
     parser.add_argument('--api-key', default=None, help='Gemini API key (overrides GMINI_API_KEY)')
     parser.add_argument('--model', default='gemini-3-flash-preview', help='Model name to use')
     parser.add_argument('--query', default=None, help='User query to send')
-    parser.add_argument('--dry-run', action='store_true', help='Only print the generated prompt (no network call)')
-    parser.add_argument('--key-file', default='.gmini_api_key', help='Path to local API key file (checked first)')
-
+    parser.add_argument('--module', default=None, help='Target module to refresh, e.g. content/code')
+    parser.add_argument('--task', default='generate', choices=['generate', 'judge'], help='Task type')
+    parser.add_argument('--dry-run', action='store_true', help='Only print the generated prompt')
+    parser.add_argument('--key-file', default='.gmini_api_key', help='Path to local API key file')
     args = parser.parse_args()
 
-    try:
-        result = call_api(feature=args.feature, api_key=args.api_key, model_name=args.model, user_query=args.query, dry_run=args.dry_run, key_file=args.key_file)
-    except Exception as e:
-        print('Error:', e)
-        return
-
-    print('---- Result ----')
+    result = call_api(
+        feature=args.feature,
+        api_key=args.api_key,
+        model_name=args.model,
+        user_query=args.query,
+        dry_run=args.dry_run,
+        key_file=args.key_file,
+        module=args.module,
+        task=args.task,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

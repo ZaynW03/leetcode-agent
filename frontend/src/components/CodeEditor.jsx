@@ -1,13 +1,5 @@
 import React, { useState } from 'react'
 
-const languageMap = {
-  python: 'python',
-  javascript: 'javascript',
-  java: 'java',
-  cpp: 'cpp',
-  go: 'go',
-}
-
 const indentSettings = {
   python: 4,
   javascript: 2,
@@ -17,7 +9,7 @@ const indentSettings = {
 }
 
 export default function CodeEditor({ code, onChange, language }) {
-  const [lineNumbers, setLineNumbers] = useState(true)
+  const [lineNumbers] = useState(true)
 
   const handleKeyDown = (e) => {
     if (e.key === 'Tab') {
@@ -28,7 +20,7 @@ export default function CodeEditor({ code, onChange, language }) {
       const indent = ' '.repeat(indentSettings[language] || 2)
       const newCode = code.substring(0, start) + indent + code.substring(end)
       onChange(newCode)
-      
+
       setTimeout(() => {
         textarea.selectionStart = textarea.selectionEnd = start + indent.length
       }, 0)
@@ -39,23 +31,20 @@ export default function CodeEditor({ code, onChange, language }) {
   const lineNumbersStr = Array.from({ length: lines }, (_, i) => i + 1).join('\n')
 
   return (
-    <div className="flex border border-gray-300 rounded-lg overflow-hidden bg-gray-900 text-white h-full">
-      {/* Line Numbers */}
+    <div className="flex h-full overflow-hidden rounded-[4px] border border-white/25 bg-black/95 text-neutral-100">
       {lineNumbers && (
-        <div className="bg-gray-800 p-3 text-right text-gray-500 text-sm font-mono select-none w-12 overflow-hidden">
+        <div className="mono w-12 overflow-hidden border-r border-white/15 bg-neutral-950 p-3 text-right text-xs text-neutral-500 select-none">
           {lineNumbersStr}
         </div>
       )}
-      
-      {/* Code Editor */}
+
       <textarea
         value={code}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        className="flex-1 p-3 font-mono text-sm bg-gray-900 text-white resize-none focus:outline-none border-l border-gray-700"
+        className="mono flex-1 resize-none border-l border-white/10 bg-black p-3 text-sm text-neutral-100 focus:outline-none"
         style={{
-          fontFamily: 'Courier New, monospace',
-          lineHeight: '1.5',
+          lineHeight: '1.55',
           tabSize: indentSettings[language] || 2,
         }}
         spellCheck="false"
